@@ -116,7 +116,7 @@ export default function RootLayout({
         </a>
         {children}
         <AnalyticsScripts />
-        {process.env.NODE_ENV === "production" && <Analytics />}
+        <Analytics />
       </body>
     </html>
   )

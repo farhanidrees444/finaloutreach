@@ -3,9 +3,9 @@
 import { useEffect, useState } from "react"
 
 /**
- * Subtle animated mesh background for the Hero section.
- * Two soft emerald + gold blurred SVG blobs, drifting slowly with pure CSS.
- * Disabled on mobile (≤768px) and on prefers-reduced-motion.
+ * Premium animated mesh background for the Hero — Stripe/Linear tier.
+ * Multi-color radial gradients drifting + scaling. Disabled on mobile to
+ * save battery and on prefers-reduced-motion. Mobile gets a static accent.
  */
 export function HeroBackground() {
   const [enabled, setEnabled] = useState(false)
@@ -28,44 +28,32 @@ export function HeroBackground() {
     }
   }, [])
 
-  if (!enabled) return null
-
   return (
-    <div
-      aria-hidden="true"
-      className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
-    >
-      {/* Emerald drifting blob (top-left) */}
-      <svg
-        className="blob-drift-a absolute -left-[15%] -top-[10%] h-[60%] w-[60%] opacity-[0.10]"
-        viewBox="0 0 600 600"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <defs>
-          <radialGradient id="hero-emerald" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="oklch(0.36 0.077 162)" />
-            <stop offset="100%" stopColor="oklch(0.36 0.077 162 / 0)" />
-          </radialGradient>
-        </defs>
-        <circle cx="300" cy="300" r="280" fill="url(#hero-emerald)" />
-      </svg>
+    <>
+      {/* Animated mesh — desktop, motion-friendly */}
+      {enabled && <div aria-hidden="true" className="hero-mesh" />}
 
-      {/* Gold drifting blob (bottom-right) */}
-      <svg
-        className="blob-drift-b absolute -bottom-[20%] -right-[15%] h-[55%] w-[55%] opacity-[0.08]"
-        viewBox="0 0 600 600"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <defs>
-          <radialGradient id="hero-gold" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="oklch(0.756 0.131 86)" />
-            <stop offset="100%" stopColor="oklch(0.756 0.131 86 / 0)" />
-          </radialGradient>
-        </defs>
-        <circle cx="300" cy="300" r="280" fill="url(#hero-gold)" />
-      </svg>
-    </div>
+      {/* Static fallback — mobile / reduced-motion. Subtle, doesn't compete. */}
+      {!enabled && (
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 -z-10 overflow-hidden opacity-50"
+          style={{
+            background:
+              "radial-gradient(ellipse 80% 60% at 25% 25%, oklch(0.55 0.24 295 / 0.18), transparent 60%), radial-gradient(ellipse 70% 50% at 75% 30%, oklch(0.58 0.22 250 / 0.15), transparent 60%), radial-gradient(ellipse 60% 60% at 60% 80%, oklch(0.74 0.16 200 / 0.12), transparent 60%)",
+          }}
+        />
+      )}
+
+      {/* Subtle conic shimmer accent — visible on both */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-32 -top-32 -z-10 size-96 rounded-full opacity-20 blur-3xl"
+        style={{
+          background:
+            "conic-gradient(from 0deg at 50% 50%, oklch(0.55 0.24 295), oklch(0.58 0.22 250), oklch(0.74 0.16 200), oklch(0.68 0.20 35), oklch(0.55 0.24 295))",
+        }}
+      />
+    </>
   )
 }

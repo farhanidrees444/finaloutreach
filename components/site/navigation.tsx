@@ -69,7 +69,7 @@ export function Navigation() {
         className={cn(
           "pointer-events-auto mt-3 flex w-full max-w-6xl items-center justify-between rounded-full px-4 py-2 transition-[border-color,background-color,box-shadow] duration-300",
           scrolled
-            ? "border border-ink-08 bg-background/80 shadow-sm backdrop-blur-xl"
+            ? "border border-vibrant-purple/15 bg-background/85 shadow-[0_4px_20px_-8px_oklch(0.55_0.24_295_/_0.15)] backdrop-blur-xl"
             : "border border-transparent bg-background/50 backdrop-blur-md",
         )}
         onMouseLeave={() => setActiveDropdown(null)}
@@ -107,15 +107,15 @@ export function Navigation() {
                       transition={{ duration: 0.18 }}
                       className="absolute left-1/2 top-full min-w-[260px] -translate-x-1/2 pt-3"
                     >
-                      <div className="overflow-hidden rounded-2xl border border-ink-08 bg-background/95 p-2 shadow-lg backdrop-blur-xl">
+                      <div className="overflow-hidden rounded-2xl glass-purple p-2 shadow-xl">
                         {item.children?.map((c) => (
                           <Link
                             key={c.href}
                             href={c.href}
-                            className="group flex items-center justify-between rounded-xl px-3 py-2.5 text-[13.5px] text-ink transition-colors duration-200 hover:bg-cream"
+                            className="group flex items-center justify-between rounded-xl px-3 py-2.5 text-[13.5px] text-ink transition-all duration-200 hover:bg-gradient-to-r hover:from-vibrant-purple/10 hover:to-electric-blue/10"
                           >
                             <span>{c.label}</span>
-                            <ArrowRight className="size-3 opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:opacity-100" />
+                            <ArrowRight className="size-3 text-vibrant-purple opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:opacity-100" />
                           </Link>
                         ))}
                       </div>
@@ -139,7 +139,12 @@ export function Navigation() {
         <div className="flex items-center gap-2">
           <Link
             href="/contact"
-            className="group hidden h-10 items-center gap-1.5 rounded-full bg-primary px-4 text-[14px] font-medium text-primary-foreground transition-colors duration-200 hover:bg-emerald-dark active:scale-[0.98] md:inline-flex"
+            className={cn(
+              "group hidden h-10 items-center gap-1.5 rounded-full px-4 text-[14px] font-medium text-white transition-all duration-200 active:scale-[0.98] md:inline-flex",
+              "bg-[linear-gradient(120deg,oklch(0.55_0.24_295),oklch(0.58_0.22_250)_50%,oklch(0.50_0.22_270))]",
+              "hover:bg-[linear-gradient(120deg,oklch(0.50_0.24_295),oklch(0.52_0.22_250)_50%,oklch(0.46_0.22_270))]",
+              "shadow-[0_4px_16px_-4px_oklch(0.55_0.24_295_/_0.4)] hover:shadow-[0_6px_20px_-4px_oklch(0.55_0.24_295_/_0.55)]",
+            )}
           >
             Book a call
             <ArrowRight className="size-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
@@ -149,7 +154,7 @@ export function Navigation() {
             aria-label="Open menu"
             aria-expanded={open}
             onClick={() => setOpen(true)}
-            className="grid size-10 place-items-center rounded-full border border-ink-08 text-ink transition-colors duration-200 hover:bg-cream md:hidden"
+            className="grid size-10 place-items-center rounded-full border border-ink-08 text-ink transition-colors duration-200 hover:border-vibrant-purple/40 hover:bg-vibrant-purple/[0.04] md:hidden"
           >
             <Menu className="size-4" />
           </button>
@@ -252,7 +257,11 @@ export function Navigation() {
               <Link
                 href="/contact"
                 onClick={() => setOpen(false)}
-                className="group mt-10 inline-flex h-14 items-center justify-center gap-2 rounded-full bg-primary px-6 text-[15px] font-medium text-primary-foreground transition-colors duration-200 hover:bg-emerald-dark"
+                className={cn(
+                  "group mt-10 inline-flex h-14 items-center justify-center gap-2 rounded-full px-6 text-[15px] font-medium text-white transition-all duration-200",
+                  "bg-[linear-gradient(120deg,oklch(0.55_0.24_295),oklch(0.58_0.22_250)_50%,oklch(0.50_0.22_270))]",
+                  "shadow-[0_8px_24px_-8px_oklch(0.55_0.24_295_/_0.5)]",
+                )}
               >
                 Book a call <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />
               </Link>

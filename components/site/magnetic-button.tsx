@@ -17,6 +17,8 @@ type Props = {
 /**
  * Magnetic CTA — gently tracks the cursor when nearby.
  * Falls back to a normal button when reduced motion is preferred.
+ *
+ * `primary` = gradient bg + animated pulse glow (the billion-dollar look).
  */
 export function MagneticButton({
   href,
@@ -51,14 +53,18 @@ export function MagneticButton({
 
   const sizes = {
     md: "h-12 px-6 text-[15px]",
-    lg: "h-[56px] px-7 text-[15.5px]",
+    lg: "h-[58px] px-8 text-[15.5px]",
   }
   const variants = {
-    primary:
-      "bg-primary text-primary-foreground hover:bg-emerald-dark cta-pulse shine-overlay",
-    ink: "bg-ink text-background hover:bg-ink/90 shine-overlay",
+    primary: cn(
+      "text-white shine-overlay cta-pulse",
+      // Gradient: violet → electric → cyan
+      "bg-[linear-gradient(120deg,oklch(0.55_0.24_295),oklch(0.58_0.22_250)_50%,oklch(0.50_0.22_270))]",
+      "hover:bg-[linear-gradient(120deg,oklch(0.50_0.24_295),oklch(0.52_0.22_250)_50%,oklch(0.46_0.22_270))]",
+    ),
+    ink: "bg-ink text-background hover:bg-ink/90 shine-overlay glow-multi",
     ghost:
-      "bg-transparent text-ink border border-ink-08 hover:border-ink-40 hover:bg-cream",
+      "bg-transparent text-ink border border-ink-08 hover:border-vibrant-purple/50 hover:bg-vibrant-purple/[0.04]",
   }
 
   return (
@@ -84,7 +90,6 @@ export function MagneticButton({
   )
 }
 
-// Convenience wrapper that mimics the Link API for consistency.
 export function MagneticLink(props: Props) {
   const _Link = Link
   void _Link

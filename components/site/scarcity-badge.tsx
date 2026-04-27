@@ -1,3 +1,4 @@
+import { Sparkles } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 export function ScarcityBadge({
@@ -10,15 +11,23 @@ export function ScarcityBadge({
   return (
     <div
       className={cn(
-        "inline-flex items-center gap-2.5 rounded-full border border-ink-08 bg-background/70 px-3.5 py-1.5 text-[13px] font-medium text-ink-60 backdrop-blur",
+        "group inline-flex items-center gap-2.5 rounded-full px-4 py-2 text-[13px] font-medium",
+        "border border-vibrant-purple/20 bg-gradient-to-r from-vibrant-purple/[0.06] via-electric-blue/[0.06] to-bright-cyan/[0.06]",
+        "backdrop-blur-md shadow-sm",
+        "transition-all duration-300 hover:border-vibrant-purple/40 hover:shadow-md",
         className,
       )}
     >
+      <Sparkles
+        aria-hidden="true"
+        className="size-3.5 text-vibrant-purple"
+        strokeWidth={2.2}
+      />
+      <span className="tracking-tight text-ink">{children}</span>
       <span
         aria-hidden="true"
-        className="pulse-dot size-1.5 rounded-full bg-[oklch(0.65_0.18_145)]"
+        className="pulse-dot ml-0.5 size-1.5 rounded-full bg-[oklch(0.7_0.18_145)]"
       />
-      <span className="tracking-tight">{children}</span>
     </div>
   )
 }

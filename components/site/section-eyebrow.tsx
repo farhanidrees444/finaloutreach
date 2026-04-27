@@ -17,8 +17,8 @@ export function SectionEyebrow({ number, label, className, children }: SectionEy
         className,
       )}
     >
-      {number && <span className="font-mono">{number}</span>}
-      {number && <span className="h-px w-8 bg-ink-08" />}
+      {number && <span className="font-mono font-semibold gradient-text">{number}</span>}
+      {number && <span className="h-px w-8 bg-gradient-to-r from-vibrant-purple/40 to-transparent" />}
       <span>{text}</span>
     </div>
   )
